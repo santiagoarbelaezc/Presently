@@ -1,0 +1,56 @@
+{
+  "title": "Minimalismo en el Diseño",
+  "author": "Antigravity Agent",
+  "theme": "dark",
+  "slides": [
+    {
+      "id": 1,
+      "type": "cover",
+      "title": "El Poder de lo Simple",
+      "subtitle": "Una exploración de la estética monócroma y el espacio negativo.",
+      "image": "cover.jpg",
+      "layout": "center"
+    },
+    {
+      "id": 2,
+      "type": "text",
+      "title": "Menos es Más",
+      "body": "El diseño minimalista no consiste en quitar cosas, sino en dejar solo lo esencial. En este constructor de presentaciones, cada píxel cuenta y cada transición busca la calma visual.",
+      "layout": "left"
+    },
+    {
+      "id": 3,
+      "type": "image-text",
+      "title": "Equilibrio Visual",
+      "body": "Combinar tipografía clásica como Playfair Display con la modernidad de Inter crea un contraste sofisticado que eleva el contenido.",
+      "image": "slide2.jpg",
+      "layout": "image-right"
+    },
+    {
+      "id": 4,
+      "type": "full-image",
+      "title": "Inmersión Total",
+      "image": "slide3.jpg",
+      "overlay": true
+    },
+    {
+      "id": 5,
+      "type": "list",
+      "title": "Principios Clave",
+      "items": [
+        "Paleta puramente monócroma",
+        "Jerarquía tipográfica Clara",
+        "Espaciado generoso",
+        "Transiciones fluidas y suaves"
+      ],
+      "layout": "center"
+    },
+    {
+      "id": 6,
+      "type": "closing",
+      "title": "Gracias por su Atención",
+      "subtitle": "antigravity@ai.com",
+      "layout": "center"
+    }
+  ]
+}

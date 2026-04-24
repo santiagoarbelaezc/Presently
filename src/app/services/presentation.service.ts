@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { Presentation, Slide } from '../models/presentation.model';
+import { Presentation } from '../models/presentation.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,37 +9,60 @@ export class PresentationService {
   presentation = signal<Presentation | null>(null);
   currentSlideIndex = signal<number>(0);
   
-  // Mapa de nombres de archivo a URLs de objetos (para imágenes locales)
-  imageMap = new Map<string, string>();
+  // Nombre del proyecto actual y ruta base
+  projectName = signal<string>('');
   
-  // Modo de edición / presentación
+  // Estado de UI
   isPreviewMode = signal<boolean>(true);
+  isLoading = signal<boolean>(false);
+  error = signal<string | null>(null);
 
   constructor() {}
 
-  // Carga el archivo JSON de la presentación
-  async loadPresentation(file: File): Promise<void> {
-    const text = await file.text();
-    const data: Presentation = JSON.parse(text);
-    this.presentation.set(data);
-    this.currentSlideIndex.set(0);
-  }
+  // Carga el proyecto por nombre desde la carpeta /recursos/
+  async loadProject(name: string): Promise<void> {
+    if (!name) return;
+    
+    this.isLoading.set(true);
+    this.error.set(null);
+    this.projectName.set(name);
 
-  // Carga múltiples imágenes y crea ObjectURLs para ellas
-  async loadImages(files: FileList | File[]): Promise<void> {
-    const fileArray = Array.from(files);
-    for (const file of fileArray) {
-      const url = URL.createObjectURL(file);
-      this.imageMap.set(file.name, url);
+    try {
+      console.log(`Cargando proyecto desde: /recursos/${name}/presentation.json`);
+      const response = await fetch(`/recursos/${name}/presentation.json`);
+      
+      if (!response.ok) {
+        throw new Error(`Código ${response.status}: No se encontró el proyecto "${name}". Revisa que la carpeta public/recursos/${name}/ exista.`);
+      }
+      
+      const data: Presentation = await response.json();
+      this.presentation.set(data);
+      this.currentSlideIndex.set(0);
+      
+      // Iniciar automáticamente si se carga con éxito
+      await this.startPresentation();
+      
+    } catch (err: any) {
+      console.error('Error al cargar proyecto:', err);
+      this.error.set(err.message);
+      this.presentation.set(null);
+    } finally {
+      this.isLoading.set(false);
     }
   }
 
-  // Obtiene la URL mapeada para una imagen o devuelve la original
+  // Obtiene la URL de la imagen relativa al proyecto: /recursos/[project]/assets/[filename]
   getImageUrl(path: string | undefined): string {
     if (!path) return '';
-    // Extraer solo el nombre del archivo del path (ej: assets/demo/images/cover.jpg -> cover.jpg)
+    
+    // Si ya es una URL completa (http), la dejamos
+    if (path.startsWith('http') || path.startsWith('blob:')) return path;
+
+    // Obtenemos solo el nombre del archivo en caso de que el JSON traiga una ruta completa
     const filename = path.split('/').pop() || '';
-    return this.imageMap.get(filename) || path;
+    
+    // Construimos la ruta: /recursos/[proyecto]/assets/[archivo]
+    return `/recursos/${this.projectName()}/assets/${filename}`;
   }
 
   // Navegación
@@ -67,6 +90,8 @@ export class PresentationService {
 
   // Modo Fullscreen
   async startPresentation(): Promise<void> {
+    if (!this.presentation()) return;
+    
     this.isPreviewMode.set(false);
     try {
       if (document.documentElement.requestFullscreen) {
