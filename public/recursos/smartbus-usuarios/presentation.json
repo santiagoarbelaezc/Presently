@@ -1,0 +1,91 @@
+{
+  "title": "Reporte UX SmartBus",
+  "author": "Santiago Ovalle, Nicolas Arbelaez, Juan Noreña",
+  "theme": "dark",
+  "slides": [
+    {
+      "id": 1,
+      "type": "cover",
+      "title": "SmartBus: Test de Usabilidad",
+      "subtitle": "Evaluación de experiencia de usuario y flujo de interfaz",
+      "image": "assets/feed.jpeg",
+      "layout": "center"
+    },
+    {
+      "id": 2,
+      "type": "image-text",
+      "title": "Santiago Ovalle",
+      "body": "Reporta acumulación excesiva de elementos en el Home. Indica que la paleta de colores no es armónica y la navegabilidad no es consistente. No logró encontrar el NFC.",
+      "image": "assets/santi.jpeg",
+      "layout": "image-right"
+    },
+    {
+      "id": 3,
+      "type": "image-text",
+      "title": "Nicolas Arbelaez",
+      "body": "Considera que los colores no son adecuados para la interfaz. Coincide en la dificultad para encontrar el componente de búsqueda y el NFC.",
+      "image": "assets/nico.jpeg",
+      "layout": "image-left"
+    },
+    {
+      "id": 4,
+      "type": "image-text",
+      "title": "Juan Noreña",
+      "body": "Sugiere condensar información en contenedores claros. Tuvo dificultades de navegabilidad para encontrar el próximo viaje y no localizó el NFC.",
+      "image": "assets/juan.jpeg",
+      "layout": "image-right"
+    },
+    {
+      "id": 5,
+      "type": "image-text",
+      "title": "Punto Crítico: Feed Home",
+      "body": "Saturación de información. Los tres participantes sugieren una limpieza visual y una mejor jerarquía de componentes para evitar el agobio visual.",
+      "image": "assets/feed.jpeg",
+      "layout": "image-left"
+    },
+    {
+      "id": 6,
+      "type": "image-text",
+      "title": "Componente de Búsqueda",
+      "body": "Invisibilidad funcional. No queda claro dónde se deben ingresar los datos, lo que interrumpe el flujo principal de 'buscar viaje'.",
+      "image": "assets/buscar.jpeg",
+      "layout": "image-right"
+    },
+    {
+      "id": 7,
+      "type": "full-image",
+      "title": "Falla Crítica: NFC no encontrado",
+      "image": "assets/nfc.jpeg",
+      "overlay": true,
+      "body": "El 100% de los usuarios falló en encontrar el botón o zona de NFC, invalidando esta característica clave en la versión actual."
+    },
+    {
+      "id": 8,
+      "type": "image-text",
+      "title": "Fortalezas: Perfil y Tiquetes",
+      "body": "El diseño de 'Mis Tiquetes' y la sección de 'Perfil' son correctos y fáciles de navegar. El sistema de puntos funciona bien.",
+      "image": "assets/profile.jpeg",
+      "layout": "image-left"
+    },
+    {
+      "id": 9,
+      "type": "list",
+      "title": "Resumen de Hallazgos",
+      "items": [
+        "Optimizar paleta de colores para mayor armonía.",
+        "Rediseñar Home para reducir carga cognitiva.",
+        "Hacer el buscador una pieza central y visible.",
+        "Reubicar o resaltar el acceso a NFC.",
+        "Mantener el flujo de compra de tiquetes por su intuición."
+      ],
+      "layout": "center"
+    },
+    {
+      "id": 10,
+      "type": "closing",
+      "title": "Gracias",
+      "subtitle": "SmartBus UX Research Team",
+      "layout": "center"
+    }
+  ]
+}
